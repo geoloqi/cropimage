@@ -73,8 +73,7 @@ class CropImageView extends ImageViewTouchBase {
     protected void postTranslate(float deltaX, float deltaY) {
 
         super.postTranslate(deltaX, deltaY);
-        for (int i = 0; i < mHighlightViews.size(); i++) {
-            HighlightView hv = mHighlightViews.get(i);
+        for (HighlightView hv : mHighlightViews) {
             hv.mMatrix.postTranslate(deltaX, deltaY);
             hv.invalidate();
         }
@@ -84,14 +83,12 @@ class CropImageView extends ImageViewTouchBase {
     // hitting cropping rectangle.
     private void recomputeFocus(MotionEvent event) {
 
-        for (int i = 0; i < mHighlightViews.size(); i++) {
-            HighlightView hv = mHighlightViews.get(i);
+        for (HighlightView hv : mHighlightViews) {
             hv.setFocus(false);
             hv.invalidate();
         }
 
-        for (int i = 0; i < mHighlightViews.size(); i++) {
-            HighlightView hv = mHighlightViews.get(i);
+        for (HighlightView hv : mHighlightViews) {
             int edge = hv.getHit(event.getX(), event.getY());
             if (edge != HighlightView.GROW_NONE) {
                 if (!hv.hasFocus()) {
@@ -117,8 +114,7 @@ class CropImageView extends ImageViewTouchBase {
                 if (cropImage.mWaitingToPick) {
                     recomputeFocus(event);
                 } else {
-                    for (int i = 0; i < mHighlightViews.size(); i++) {
-                        HighlightView hv = mHighlightViews.get(i);
+                    for (HighlightView hv : mHighlightViews) {
                         int edge = hv.getHit(event.getX(), event.getY());
                         if (edge != HighlightView.GROW_NONE) {
                             mMotionEdge = edge;
@@ -168,14 +164,12 @@ class CropImageView extends ImageViewTouchBase {
                     mLastX = event.getX();
                     mLastY = event.getY();
 
-                    if (true) {
-                        // This section of code is optional. It has some user
-                        // benefit in that moving the crop rectangle against
-                        // the edge of the screen causes scrolling but it means
-                        // that the crop rectangle is no longer fixed under
-                        // the user's finger.
-                        ensureVisible(mMotionHighlightView);
-                    }
+                    // This section of code is optional. It has some user
+                    // benefit in that moving the crop rectangle against
+                    // the edge of the screen causes scrolling but it means
+                    // that the crop rectangle is no longer fixed under
+                    // the user's finger.
+                    ensureVisible(mMotionHighlightView);
                 }
                 break;
         }
@@ -249,8 +243,8 @@ class CropImageView extends ImageViewTouchBase {
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
-        for (int i = 0; i < mHighlightViews.size(); i++) {
-            mHighlightViews.get(i).draw(canvas);
+        for (HighlightView mHighlightView : mHighlightViews) {
+            mHighlightView.draw(canvas);
         }
     }
 

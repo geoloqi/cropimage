@@ -31,9 +31,7 @@ public class Util {
 
     private static final String TAG = "db.Util";
 
-    private Util() {
-
-    }
+    private Util() {}
 
     /*
      * Compute the sample size as a function of minSideLength
@@ -48,8 +46,6 @@ public class Util {
      * The functions prefers returning a sample size that
      * generates a smaller bitmap, unless minSideLength = IImage.UNCONSTRAINED.
      */
-
-
     public static Bitmap transform(Matrix scaler,
                                    Bitmap source,
                                    int targetWidth,
@@ -210,12 +206,11 @@ public class Util {
     }
 
 
-    // Returns Options that set the puregeable flag for Bitmap decode.
+    // Returns Options that set the purege-able flag for Bitmap decode.
     public static BitmapFactory.Options createNativeAllocOptions() {
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
         //options.inNativeAlloc = true;
-        return options;
+        return new BitmapFactory.Options();
     }
 
     // Thong added for rotate
@@ -224,8 +219,7 @@ public class Util {
         Matrix matrix = new Matrix();
         // setup rotation degree
         matrix.postRotate(degree);
-        Bitmap bmp = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-        return bmp;
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
     }
 
     public static int getOrientationInDegree(Activity activity) {

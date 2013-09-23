@@ -186,11 +186,7 @@ public class BitmapManager {
      */
     public synchronized void dump() {
 
-        Iterator<Map.Entry<Thread, ThreadStatus>> i =
-                mThreadStatus.entrySet().iterator();
-
-        while (i.hasNext()) {
-            Map.Entry<Thread, ThreadStatus> entry = i.next();
+        for (Map.Entry<Thread, ThreadStatus> entry : mThreadStatus.entrySet()) {
             Log.v(TAG, "[Dump] Thread " + entry.getKey() + " ("
                     + entry.getKey().getId()
                     + ")'s status is " + entry.getValue());

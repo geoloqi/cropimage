@@ -28,7 +28,6 @@ import android.widget.ImageView;
 
 abstract class ImageViewTouchBase extends ImageView {
 
-    @SuppressWarnings("unused")
     private static final String TAG = "ImageViewTouchBase";
 
     // This is the base transformation which is used to show the image
@@ -319,8 +318,7 @@ abstract class ImageViewTouchBase extends ImageView {
 
         float fw = (float) mBitmapDisplayed.getWidth() / (float) mThisWidth;
         float fh = (float) mBitmapDisplayed.getHeight() / (float) mThisHeight;
-        float max = Math.max(fw, fh) * 4;
-        return max;
+        return Math.max(fw, fh) * 4;
     }
 
     protected void zoomTo(float scale, float centerX, float centerY) {
